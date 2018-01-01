@@ -4,12 +4,17 @@ import ProjectItem from './ProjectItem'
 class Projects extends React.Component {
   constructor () {
     super()
+    
+  }
+  deleteProject(id) {
+    console.log("in PR")
+    this.props.onDelete(id);
   }
   render () {
     let projectItems
     if (this.props.projects) {
       projectItems = this.props.projects.map(project => (
-        <ProjectItem key={project.counter} project={project} />
+        <ProjectItem onDelete={this.deleteProject.bind(this)} key={project.counter} project={project} />
       ))
     }
     return (

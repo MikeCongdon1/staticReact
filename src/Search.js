@@ -23,8 +23,8 @@ class Search extends React.Component {
   }
   addTodo (event) {
     event.preventDefault()
-    const name = this.refs.name.value
-    const completed = this.refs.completed.value
+    const title = this.refs.name.value
+    const category = this.refs.completed.value
     let counter = this.state.counter
     const todos = this.state.todos
 
@@ -43,11 +43,24 @@ class Search extends React.Component {
     })
     this.refs.todoForm.reset()
   }
+
+  handleDeleteProject(id) {
+    const todos = this.state.todos
+    const todo = todos.findIndex(todo => todo.counter === id)
+    console.log(todo)
+    todos.splice(todo, 1)
+    this.setState({ todos })
+
+  }
   handleAddProject (project) {
-    console.log(project)
     const projects = this.state.todos
+    let counter = this.state.counter
+    counter += 1
+    project.counter = counter
+    console.log(project)
+     
     projects.push(project)
-    this.setState({ todos:projects })
+    this.setState({ todos:projects, counter })
   }
   details (index) {
     const todos = this.state.todos
@@ -62,7 +75,7 @@ class Search extends React.Component {
       <h1>{title}</h1>
       <AddProject addProject={this.handleAddProject.bind(this)} />
 
-      <Projects projects={todos} />
+      <Projects projects={todos} onDelete={this.handleDeleteProject.bind(this)} />
 
 
     </div>)
