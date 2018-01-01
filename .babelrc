@@ -1,0 +1,7 @@
+{
+  "extends": "react-static/.babelrc",
+  "presets": [
+    "es2015",
+    "react"
+   ]
+}
