@@ -17,6 +17,7 @@ class AddProject extends React.Component {
       this.setState({ newProject: {
         title: this.refs.name.value,
         category: this.refs.category.value,
+        Status: this.refs.completed.value
       }}, function(){
           this.props.addProject(this.state.newProject)
       })
